@@ -1,0 +1,6 @@
+---
+- name: gtk-doc
+  apt:
+    pkg: gtk-doc-tools
+    state: present
+  become: yes

@@ -1,0 +1,4 @@
+---
+rtsp_server_mirror: "https://github.com/GStreamer/gst-rtsp-server.git"
+
+rtsp_server_download_dest: "{{ ansible_user_dir }}/gst-rtsp-server"

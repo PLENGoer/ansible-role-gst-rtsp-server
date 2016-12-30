@@ -1,0 +1,11 @@
+---
+- name: Check gst-rtsp-server installation status
+  shell: pkg-config --exists gstreamer-rtsp-server-1.0 --print-errors
+  register: pkg_config_result
+  ignore_errors: yes
+
+- include: Dependencies.yml
+  when: pkg_config_result.rc != 0
+
+- include: BuildInstall.yml
+  when: pkg_config_result.rc != 0

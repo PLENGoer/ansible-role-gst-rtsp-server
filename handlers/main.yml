@@ -1,0 +1,6 @@
+---
+- name: Delete downloaded sources
+  file:
+    path: "{{ rtsp_server_download_dest }}"
+    state: absent
+  listen: "delete rtsp_server source"

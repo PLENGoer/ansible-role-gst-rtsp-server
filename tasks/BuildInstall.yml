@@ -1,0 +1,26 @@
+---
+- name: gst-rtsp-server git repository
+  git:
+    repo: "{{ rtsp_server_mirror }}"
+    version: "origin/1.8"
+    dest: "{{ rtsp_server_download_dest }}"
+    depth: 1
+    update: no
+    accept_hostkey: yes
+
+- name: Prepare for build
+  shell: ./autogen.sh
+  args:
+    chdir: "{{ rtsp_server_download_dest }}"
+
+- name: Build
+  make:
+    chdir: "{{ rtsp_server_download_dest }}"
+
+- name: Install
+  make:
+    chdir: "{{ rtsp_server_download_dest }}"
+    target: install
+  become: yes
+  notify:
+    - "delete rtsp_server source"
